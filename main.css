@@ -1,0 +1,19 @@
+.row{
+  display: flex;
+}
+.square{
+  border-radius: 2px;
+  border: 1px solid lightgray;
+  padding-top: 16%;
+  margin: 1px;
+  background-color: aquamarine;
+}
+
+.container-fluid{
+  margin-top: 1px;
+  max-width:450px;
+  max-height:450px;
+}
+
+#container{
+}
