@@ -1,0 +1,16 @@
+{
+  "short_name": "squeakygrid",
+  "name": "Squeaky Grid",
+  "icons": [
+    {
+      "src": "gridicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+  ],
+  "start_url": "/squeaky-grid/index.html",
+  "background_color": "white",
+  "display": "standalone",
+  "scope": "/squeaky-grid/",
+  "theme_color": "aquamarine"
+}
