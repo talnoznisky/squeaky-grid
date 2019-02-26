@@ -52,12 +52,14 @@ writeSquares()
 function playUp(){
   setInterval(playTone())
 }
-
-// function playUp(){
-//   setInterval(function(){
-//     oscillator.connect(audioCtx.destination);
-//     oscillator.frequency.value = this.attributes.getNamedItem('data-pitch').value;
-//     connected = true;
-//   })
-// }
-// playUp()
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
