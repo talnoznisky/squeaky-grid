@@ -1,6 +1,6 @@
 
 var divs = document.getElementsByClassName("square")
-const container = document.getElementById("container")
+const container = document.getElementById("root")
 
 var initialized = false;
 var tone = 220;
@@ -13,18 +13,23 @@ var connected = false
 
 function playTone(){
   if(initialized == false){
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination)
+    gainNode.gain.setTargetAtTime(1, audioCtx.currentTime, 0.0009);
     oscillator.start();
     initialized = true;
   }
-    oscillator.connect(audioCtx.destination);
     oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination)
+    gainNode.gain.setTargetAtTime(1, audioCtx.currentTime, 0.0009);
+    // oscillator.connect(audioCtx.destination);
     oscillator.frequency.value = this.attributes.getNamedItem('data-pitch').value;
     connected = true;
   }
 function endTone(){
-      gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 1.080);
-      oscillator.disconnect(gainNode)
-      oscillator.disconnect(audioCtx.destination);
+      gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.0150);
+      // oscillator.disconnect(gainNode)
+      // oscillator.disconnect(audioCtx.destination);
       connected = false;
     }
 
@@ -41,7 +46,7 @@ function writeSquares(){
     square.addEventListener('mouseup', endTone)
     square.addEventListener('touchstart', playTone)
     square.addEventListener('touchend', endTone)
-    tone = tone + 10;
+    tone = tone + 15;
     square.setAttribute('data-pitch', tone)
     row.appendChild(square);
     }
@@ -49,9 +54,6 @@ function writeSquares(){
 }
 writeSquares()
 
-function playUp(){
-  setInterval(playTone())
-}
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('sw.js').then(function(registration) {
