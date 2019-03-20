@@ -1,5 +1,5 @@
 {
-  "short_name": "squeakygrid",
+  "short_name": "Squeaky Grid",
   "name": "Squeaky Grid",
   "icons": [
     {
@@ -17,5 +17,5 @@
   "background_color": "white",
   "display": "standalone",
   "scope": "/squeaky-grid/",
-  "theme_color": "aquamarine"
+  "theme_color": "#FA7F52"
 }
