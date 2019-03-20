@@ -6,7 +6,9 @@ var initialized = false;
 var tone = 220;
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 var oscillator = audioCtx.createOscillator();
+oscillator.type = 'triangle';
 var gainNode = audioCtx.createGain();
+
 
 var connected = false
 
@@ -18,6 +20,7 @@ function playTone(){
     gainNode.gain.setTargetAtTime(1, audioCtx.currentTime, 0.0009);
     oscillator.start();
     initialized = true;
+    this.classList.add("active")
   }
     oscillator.connect(gainNode);
     gainNode.connect(audioCtx.destination)
@@ -25,12 +28,14 @@ function playTone(){
     // oscillator.connect(audioCtx.destination);
     oscillator.frequency.value = this.attributes.getNamedItem('data-pitch').value;
     connected = true;
+    this.classList.add("active")
   }
 function endTone(){
       gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.0150);
       // oscillator.disconnect(gainNode)
       // oscillator.disconnect(audioCtx.destination);
       connected = false;
+      this.classList.remove("active")
     }
 
 
